@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="undreline">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">#60FFFFFF</item>
+        <item name="android:layout_marginHorizontal">20dp</item>
+        <item name="android:layout_marginTop">15dp</item>
+    </style>
+
+    <style name="white_button">
+        <item name="android:layout_width">300dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:background">@drawable/white_button</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/boogaloo_regular</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="MyDropdownMenuStyle" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:background">@color/white</item>
+    </style>
+
+</resources>

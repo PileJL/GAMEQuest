@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Teacher.TeacherHomePage"
+    android:background="@drawable/app_bg">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/buttonsContainer">
+
+        <ImageView
+            android:id="@+id/appLogo"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/game_icon"/>
+
+        <TextView
+            android:id="@+id/welcomeMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome Teacher!"
+            app:layout_constraintTop_toBottomOf="@id/appLogo"
+            app:layout_constraintStart_toStartOf="@id/appLogo"
+            app:layout_constraintEnd_toEndOf="@id/appLogo"
+            android:textColor="@color/black"
+            android:fontFamily="@font/boogaloo_regular"
+            android:textSize="35sp"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your teaching hub is ready!\nLet’s inspire and empower learning together!"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/welcomeMessage"
+            app:layout_constraintStart_toStartOf="@id/welcomeMessage"
+            app:layout_constraintEnd_toEndOf="@id/welcomeMessage"
+            android:textColor="@color/black"
+            android:fontFamily="@font/fredoka_regular"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"
+            android:textSize="14sp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/buttonsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/gradient_blue_soft_top_corcers">
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/createLessonBttn"
+            android:text="Create Lesson"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="70dp"
+            style="@style/white_button" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/learningMaterialsBttn"
+            android:text="Learning Materials"
+            app:layout_constraintTop_toBottomOf="@id/createLessonBttn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20dp"
+            style="@style/white_button" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/studAssLogBttn"
+            android:text="Student’s Assessment Log"
+            app:layout_constraintTop_toBottomOf="@id/learningMaterialsBttn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="50dp"
+            style="@style/white_button" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

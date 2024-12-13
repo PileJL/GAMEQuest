@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WelcomePage"
+    android:background="@drawable/app_bg">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingVertical="85dp"
+        android:background="@drawable/gradient_blue_soft_top_corcers">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginHorizontal="30dp"
+            android:paddingHorizontal="30dp"
+            android:paddingTop="20dp"
+            android:background="@drawable/transparent_blue_soft_edges">
+
+            <TextView
+                android:id="@+id/welcomeTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Well Done Student!!"
+                android:textColor="@color/black"
+                android:fontFamily="@font/inter_24pt_bold"
+                android:textSize="23sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/welcomeMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Let’s Learn and Play\nhere at  G.A.M.E Quest!"
+                android:textColor="@color/black"
+                android:fontFamily="@font/inter_24pt_bold"
+                android:textSize="20sp"
+                android:layout_marginStart="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/welcomeTitle"
+                android:layout_marginTop="40dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/nextButton"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="@drawable/violet_button_bg"
+                app:layout_constraintTop_toBottomOf="@id/welcomeMessage"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="80dp"
+                android:text="Next"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:fontFamily="@font/inter_24pt_bold"
+                android:textSize="21sp"
+                />
+
+            <View
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                style="@style/undreline" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
