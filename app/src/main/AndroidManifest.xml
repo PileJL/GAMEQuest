@@ -13,6 +13,9 @@
         android:theme="@style/Theme.GAMEQuest"
         tools:targetApi="31">
         <activity
+            android:name=".ModulePage"
+            android:exported="true" />
+        <activity
             android:name=".Teacher.Module.ModuleListPage"
             android:exported="true" />
         <activity
