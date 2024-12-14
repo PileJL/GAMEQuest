@@ -16,10 +16,12 @@ public class ModuleAdapter extends RecyclerView.Adapter<ModuleViewHolder> {
 
     Context context;
     List<ModuleItem> moduleList;
+    ModuleItemSelectListener listener;
 
-    public ModuleAdapter(Context context, List<ModuleItem> moduleList) {
+    public ModuleAdapter(Context context, List<ModuleItem> moduleList, ModuleItemSelectListener listener) {
         this.context = context;
         this.moduleList = moduleList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -32,8 +34,15 @@ public class ModuleAdapter extends RecyclerView.Adapter<ModuleViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ModuleViewHolder holder, int position) {
-        holder.moduleNumber.setText(moduleList.get(position).getModuleNumber());
         holder.lessonTitle.setText(moduleList.get(position).getLessonTitle());
+        holder.lessonDescription.setText(moduleList.get(position).getLessonDescription());
+
+        holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onModuleItemSelected(moduleList.get(position));
+            }
+        });
     }
 
     @Override

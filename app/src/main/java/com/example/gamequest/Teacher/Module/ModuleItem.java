@@ -1,19 +1,11 @@
 package com.example.gamequest.Teacher.Module;
 
 public class ModuleItem {
-    String moduleNumber, lessonTitle;
+    String lessonTitle, lessonDescription;;
 
-    public ModuleItem(String moduleNumber, String lessonTitle) {
-        this.moduleNumber = moduleNumber;
+    public ModuleItem(String lessonTitle, String lessonDescription) {
+        this.lessonDescription = lessonDescription;
         this.lessonTitle = lessonTitle;
-    }
-
-    public String getModuleNumber() {
-        return moduleNumber;
-    }
-
-    public void setModuleNumber(String moduleNumber) {
-        this.moduleNumber = moduleNumber;
     }
 
     public String getLessonTitle() {
@@ -22,5 +14,13 @@ public class ModuleItem {
 
     public void setLessonTitle(String lessonTitle) {
         this.lessonTitle = lessonTitle;
+    }
+
+    public String getLessonDescription() {
+        return lessonDescription;
+    }
+
+    public void setLessonDescription(String lessonDescription) {
+        this.lessonDescription = lessonDescription;
     }
 }

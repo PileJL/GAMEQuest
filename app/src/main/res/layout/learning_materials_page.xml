@@ -88,7 +88,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/secondGrading"
-            android:text="2ns Grading Period"
+            android:text="2nd Grading Period"
             app:layout_constraintTop_toBottomOf="@id/firstGrading"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
