@@ -13,6 +13,12 @@
         android:theme="@style/Theme.GAMEQuest"
         tools:targetApi="31">
         <activity
+            android:name=".Teacher.Module.ModuleListPage"
+            android:exported="false" />
+        <activity
+            android:name=".Teacher.LearningMaterialsPage"
+            android:exported="false" />
+        <activity
             android:name=".Teacher.QuizAddedPage"
             android:exported="false" />
         <activity

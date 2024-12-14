@@ -39,5 +39,11 @@ public class TeacherHomePage extends AppCompatActivity {
             finish();
         });
 
+        // learningMaterialsBttn onclick
+        binding.learningMaterialsBttn.setOnClickListener(v -> {
+            Utility.navigateToActivity(TeacherHomePage.this, new Intent(TeacherHomePage.this, LearningMaterialsPage.class));
+            finish();
+        });
+
     }
 }
