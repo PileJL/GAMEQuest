@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -30,6 +31,17 @@ public class QuizTypeSelectionPage extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        // This callback will intercept the back button press
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                whenBackIsPressed();
+            }
+        };
+        // Add the callback to the OnBackPressedDispatcher
+        getOnBackPressedDispatcher().addCallback(this, callback);
+
+        binding.backButton.setOnClickListener(v -> whenBackIsPressed());
 
         Intent intent = getIntent();
         lessonTitle = intent.getStringExtra("lessonTitle");
@@ -52,5 +64,10 @@ public class QuizTypeSelectionPage extends AppCompatActivity {
             Utility.navigateToActivity(QuizTypeSelectionPage.this, intent1);
             finish();
         });
+    }
+
+    private void whenBackIsPressed() {
+        Utility.navigateToActivity(this, new Intent(this, CreateLessonPage.class));
+        finish();
     }
 }

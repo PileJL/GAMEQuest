@@ -7,6 +7,7 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -23,6 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.example.gamequest.Utilities.Utility;
+import com.example.gamequest.databinding.QuizTypeSelectionPageBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -53,6 +55,17 @@ public class CreateQuizPage extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        // This callback will intercept the back button press
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                whenBackIsPressed();
+            }
+        };
+        // Add the callback to the OnBackPressedDispatcher
+        getOnBackPressedDispatcher().addCallback(this, callback);
+
+        binding.backButton.setOnClickListener(v -> whenBackIsPressed());
         // initializations
         radioButtons = new ArrayList<>(Arrays.asList(binding.radioButton1, binding.radioButton2, binding.radioButton3, binding.radioButton4));
 
@@ -86,6 +99,11 @@ public class CreateQuizPage extends AppCompatActivity {
 
         // create button onclick
         binding.createQuizButton.setOnClickListener(v -> createQuiz());
+    }
+
+    private void whenBackIsPressed() {
+        Utility.navigateToActivity(this, new Intent(this, CreateLessonPage.class));
+        finish();
     }
 
     private void createQuiz() {
@@ -128,6 +146,8 @@ public class CreateQuizPage extends AppCompatActivity {
                     .add(question)
                     .addOnFailureListener(e -> Toast.makeText(CreateQuizPage.this, e.getMessage(), Toast.LENGTH_SHORT).show());
         }
+        Utility.navigateToActivity(this, new Intent(this, QuizAddedPage.class));
+        finish();
     }
 
     private void radioButtonOnClick(View v) {
