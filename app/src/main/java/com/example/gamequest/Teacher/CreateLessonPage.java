@@ -18,11 +18,15 @@ import com.example.gamequest.Utilities.Utility;
 import com.example.gamequest.R;
 import com.example.gamequest.databinding.CreateLessonPageBinding;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class CreateLessonPage extends AppCompatActivity {
 
     CreateLessonPageBinding binding;
     String[] dropdownItems = {"1st Grading", "2nd Grading", "3rd Grading", "4th Grading"};
     ArrayAdapter<String> adapterItems;
+    String gradingPeriod;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +53,29 @@ public class CreateLessonPage extends AppCompatActivity {
         binding.gradingPeriod.setAdapter(adapterItems);
         binding.backButton.setOnClickListener(v -> whenBackIsPressed());
 
-        binding.gradingPeriod.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String selectedItem = parent.getItemAtPosition(position).toString();
-                Toast.makeText(CreateLessonPage.this, "Selected: " + selectedItem, Toast.LENGTH_SHORT).show();
-            }
+        // dropdown onclick
+        binding.gradingPeriod.setOnItemClickListener((AdapterView.OnItemClickListener) (parent, view, position, id) -> {
+            gradingPeriod = parent.getItemAtPosition(position).toString();
         });
+        // proceedToQuiz button onclick
+        binding.proceedToQuizBttn.setOnClickListener(v -> {
+            proceedToQuiz();
+        });
+    }
+
+    private void proceedToQuiz() {
+        if (Utility.hasEmptyFields(new ArrayList<>(Arrays.asList(binding.lessonTitle, binding.lessonDescription))) || 
+            gradingPeriod == null) {
+            Toast.makeText(this, "Please provide all necessary details.", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Intent intent = new Intent(CreateLessonPage.this, QuizTypeSelectionPage.class);
+            intent.putExtra("lessonTitle", binding.lessonTitle.getText().toString().trim());
+            intent.putExtra("lessonDescription", binding.lessonDescription.getText().toString().trim());
+            intent.putExtra("gradingPeriod", binding.gradingPeriod.getText().toString().trim());
+            Utility.navigateToActivity(CreateLessonPage.this, intent);
+            finish();
+        }
     }
 
     private void whenBackIsPressed() {

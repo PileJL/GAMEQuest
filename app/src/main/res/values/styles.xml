@@ -22,4 +22,29 @@
         <item name="android:background">@color/white</item>
     </style>
 
+    <style name="quiz_option">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/fredoka_regular</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColorHint">#5c5c5c</item>
+        <item name="android:minHeight">40dp</item>
+        <item name="android:background">@drawable/gray_oval</item>
+        <item name="android:maxLength">100</item>
+        <item name="android:inputType">textMultiLine</item>
+        <item name="android:imeOptions">actionNext</item>
+        <item name="android:paddingHorizontal">15dp</item>
+        <item name="android:paddingVertical">10dp</item>
+        <item name="android:textCursorDrawable">@color/black</item>
+    </style>
+
+    <style name="radio_button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">-5dp</item>
+        <item name="buttonTint">#178cfe</item>
+    </style>
+
 </resources>

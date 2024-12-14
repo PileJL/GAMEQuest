@@ -16,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.gamequest.Utilities.Utility;
 import com.example.gamequest.databinding.SignInPageBinding;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class SignInPage extends AppCompatActivity {
 
     SignInPageBinding binding;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    public static String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +73,13 @@ public class SignInPage extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // if account is found, go to Welcome Activity
                             if (task.getResult() != null && !task.getResult().isEmpty()) {
-                                Intent intent = new Intent(SignInPage.this, WelcomePage.class);
-                                intent.putExtra("userType", userType);
-                                Utility.navigateToActivity(SignInPage.this, intent);
-                                finish();
+                                for (DocumentSnapshot document : task.getResult()) {
+                                    userID = document.getId();
+                                    Intent intent = new Intent(SignInPage.this, WelcomePage.class);
+                                    intent.putExtra("userType", userType);
+                                    Utility.navigateToActivity(SignInPage.this, intent);
+                                    finish();
+                                }
                             }
                             else {
                                 // else, display a toast message

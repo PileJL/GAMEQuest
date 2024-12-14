@@ -1,8 +1,6 @@
 package com.example.gamequest.Teacher;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,33 +9,18 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.gamequest.R;
-import com.example.gamequest.databinding.TeacherHomePageBinding;
-import com.example.gamequest.Utilities.Utility;
 
-
-public class TeacherHomePage extends AppCompatActivity {
-
-    public static String userId;
-    TeacherHomePageBinding binding;
+public class QuizAddedPage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        binding = TeacherHomePageBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        setContentView(R.layout.quiz_added_page);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-
-        // createLessonBttn onclick
-        binding.createLessonBttn.setOnClickListener(v -> {
-            Utility.navigateToActivity(TeacherHomePage.this, new Intent(TeacherHomePage.this, CreateLessonPage.class));
-            finish();
-        });
-
     }
 }

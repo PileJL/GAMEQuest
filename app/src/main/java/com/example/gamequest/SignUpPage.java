@@ -75,8 +75,8 @@ public class SignUpPage extends AppCompatActivity {
             Toast.makeText(this, "Username or password can't be empty.", Toast.LENGTH_SHORT).show();
         }
         // check if inputted password is not 8 characters or more
-        else if (password.length() < 9) {
-            Toast.makeText(this, "Please a password with minimum of 8 characters.", Toast.LENGTH_SHORT).show();
+        else if (password.length() < 8) {
+            Toast.makeText(this, "Please use a password with minimum of 8 characters.", Toast.LENGTH_SHORT).show();
         }
         else {
             // add user credentials to user object

@@ -32,7 +32,6 @@ public class WelcomePage extends AppCompatActivity {
 
         Intent intent = getIntent();
         String userType = intent.getStringExtra("userType");
-        Toast.makeText(this, userType, Toast.LENGTH_SHORT).show();
         // change welcome title based on user type
         changeWelcomeTitle(userType);
 
