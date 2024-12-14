@@ -14,6 +14,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.gamequest.ModulePage;
 import com.example.gamequest.R;
 import com.example.gamequest.Teacher.LearningMaterialsPage;
 import com.example.gamequest.databinding.ModuleListPageBinding;
@@ -100,6 +101,9 @@ public class ModuleListPage extends AppCompatActivity implements ModuleItemSelec
 
     @Override
     public void onModuleItemSelected(ModuleItem moduleItem) {
-        Toast.makeText(this, moduleItem.lessonTitle + moduleItem.lessonDescription, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, ModulePage.class);
+        intent.putExtra("lessonTitle", moduleItem.getLessonTitle());
+        intent.putExtra("lessonDescription", moduleItem.getLessonDescription());
+        Utility.navigateToActivity(this, intent);
     }
 }
