@@ -121,7 +121,7 @@ public class QuizPage extends AppCompatActivity {
         else {
 
             // check if answer is correct
-            if (questionAnswer.equalsIgnoreCase(quizQuestions.get(0).get("answer").toString())) {
+            if (questionAnswer.equalsIgnoreCase(quizQuestions.get(answeredQuestions).get("answer").toString())) {
                 userScore++;
 //                Toast.makeText(this, "tama", Toast.LENGTH_SHORT).show();
             }
@@ -196,6 +196,7 @@ public class QuizPage extends AppCompatActivity {
         assessmentLog.put("lessonId", lessonId);
         assessmentLog.put("userName", SignInPage.userName);
         assessmentLog.put("userScore", String.format("%d / %d", userScore, quizTotalItem));
+        Toast.makeText(this, String.format("%d / %d", userScore, quizTotalItem), Toast.LENGTH_SHORT).show();
 
         // else, add the account to database
         db.collection("assessmentLog")
