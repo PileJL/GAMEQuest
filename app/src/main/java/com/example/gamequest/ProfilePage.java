@@ -55,6 +55,14 @@ public class ProfilePage extends AppCompatActivity {
         // set profile usrename
         binding.userName.setText(userName);
 
+        // set profile image accordingly
+        if (SignInPage.userType.equalsIgnoreCase("student")) {
+            binding.userImage.setImageResource(R.drawable.student_image);
+        }
+        else {
+            binding.userImage.setImageResource(R.drawable.teacher_image);
+        }
+
     }
 
     private void whenBackIsPressed() {

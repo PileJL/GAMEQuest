@@ -44,10 +44,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/buttonsContainer"
         android:layout_width="match_parent"
-        android:layout_height="650dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pageTitle"
+        android:layout_marginTop="10dp"
         android:paddingHorizontal="10dp"
         android:background="@drawable/gradient_blue_soft_top_corcers">
 

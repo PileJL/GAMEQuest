@@ -72,6 +72,9 @@ public class QuizPage extends AppCompatActivity {
         // initializations
         radioButtons = new ArrayList<>(Arrays.asList(binding.radioButton1, binding.radioButton2, binding.radioButton3, binding.radioButton4));
 
+        // back button onclick
+        binding.backButton.setOnClickListener(v -> whenBackIsPressed());
+
         // set quiz topic
         binding.quizTopic.setText(lessonTitle);
 
@@ -186,8 +189,6 @@ public class QuizPage extends AppCompatActivity {
         binding.option2.setText(choices.get(1));
         binding.option3.setText(choices.get(2));
         binding.option4.setText(choices.get(3));
-
-        Toast.makeText(this, quizQuestions.get(answeredQuestions).get("answer").toString(), Toast.LENGTH_SHORT).show();
     }
 
     private void addUserScoreToDB() {

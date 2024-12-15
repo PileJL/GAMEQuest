@@ -74,6 +74,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:paddingVertical="50dp"
         android:background="@drawable/gradient_blue_soft_top_corcers">
 
 
@@ -83,28 +84,28 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="70dp"
-            style="@style/white_button" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/identifyToWinBttn"
-            android:text="Identify to Win"
-            app:layout_constraintTop_toBottomOf="@id/pickAndPlayBttn"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="20dp"
-            style="@style/white_button" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/corsswordMasterBttn"
-            android:text="Crossword Master"
-            app:layout_constraintTop_toBottomOf="@id/identifyToWinBttn"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="50dp"
             style="@style/white_button" />
+
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/identifyToWinBttn"-->
+<!--            android:text="Identify to Win"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/pickAndPlayBttn"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            style="@style/white_button" />-->
+
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/corsswordMasterBttn"-->
+<!--            android:text="Crossword Master"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/identifyToWinBttn"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_marginBottom="50dp"-->
+<!--            style="@style/white_button" />-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -28,6 +28,7 @@ public class SignInPage extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     public static String userID;
     public static String userName;
+    public static String userType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,7 @@ public class SignInPage extends AppCompatActivity {
 
         // get selected userType from previous page
         Intent intent = getIntent();
-        String userType = intent.getStringExtra("userType");
+        userType = intent.getStringExtra("userType");
 
         binding.signInButton.setOnClickListener(v -> logIn(userType, binding.userName.getText().toString(), binding.password.getText().toString()));
 
