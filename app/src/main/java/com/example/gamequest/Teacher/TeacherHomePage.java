@@ -19,6 +19,7 @@ public class TeacherHomePage extends AppCompatActivity {
 
     public static String userId;
     TeacherHomePageBinding binding;
+    public static boolean openStudentAssLog = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +48,7 @@ public class TeacherHomePage extends AppCompatActivity {
 
         // studAssLogBttn onclick
         binding.studAssLogBttn.setOnClickListener(v -> {
-            Intent intent = new Intent(this, LearningMaterialsPage.class);
+            openStudentAssLog = true;
             Utility.navigateToActivity(TeacherHomePage.this, new Intent(TeacherHomePage.this, LearningMaterialsPage.class));
             finish();
         });

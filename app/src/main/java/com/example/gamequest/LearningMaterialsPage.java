@@ -2,6 +2,7 @@ package com.example.gamequest;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
@@ -18,6 +19,7 @@ public class LearningMaterialsPage extends AppCompatActivity {
 
     LearningMaterialsPageBinding binding;
     public static String staticGradingPeriod;
+    boolean openStudentAssLog = TeacherHomePage.openStudentAssLog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,12 @@ public class LearningMaterialsPage extends AppCompatActivity {
 
         // backButton onclick
         binding.backButton.setOnClickListener(v -> whenBackIsPressed());
+
+        // set page title to Assessment Log if so
+        if (openStudentAssLog) {
+            binding.pageTitle.setText("Assessment Log");
+            binding.message.setVisibility(View.GONE);
+        }
 
         // grading periods onclick
         binding.firstGrading.setOnClickListener(v -> gradingPeriodOnClick("1st Grading"));
