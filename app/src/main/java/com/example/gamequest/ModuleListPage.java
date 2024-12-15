@@ -1,4 +1,4 @@
-package com.example.gamequest.Teacher.Module;
+package com.example.gamequest;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,23 +7,18 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.gamequest.ModulePage;
-import com.example.gamequest.R;
-import com.example.gamequest.Teacher.LearningMaterialsPage;
+import com.example.gamequest.Teacher.Module.ModuleAdapter;
+import com.example.gamequest.Teacher.Module.ModuleItem;
+import com.example.gamequest.Teacher.Module.ModuleItemSelectListener;
 import com.example.gamequest.databinding.ModuleListPageBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.example.gamequest.Utilities.Utility;
 
 import java.util.ArrayList;
@@ -34,9 +29,11 @@ public class ModuleListPage extends AppCompatActivity implements ModuleItemSelec
     ModuleListPageBinding binding;
     List<ModuleItem> moduleList = new ArrayList<>();
 
-    String gradingPeriod = "2nd Grading";
+    String gradingPeriod = LearningMaterialsPage.staticGradingPeriod;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    public static String lessonTitle, lessonDescription, lessonId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,14 +59,10 @@ public class ModuleListPage extends AppCompatActivity implements ModuleItemSelec
         // backbutton onclick
         binding.backButton.setOnClickListener(v -> whenBackIsPressed());
 
-        // get clicked grading period from previous page
-        Intent intent = getIntent();
-        gradingPeriod = intent.getStringExtra("gradingPeriod");
-
         // set page title based on grading period
         binding.pageTitle.setText(gradingPeriod + " Period");
 
-
+        // get lessons
         db.collection("lessons")
                 .whereEqualTo("gradingPeriod", gradingPeriod) // Filter by gradingPeriod
                 .get()
@@ -79,7 +72,8 @@ public class ModuleListPage extends AppCompatActivity implements ModuleItemSelec
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 String title = document.getString("title");
                                 String description = document.getString("description");
-                                moduleList.add(new ModuleItem(title, description + "..."));
+                                String lessonId = document.getId();
+                                moduleList.add(new ModuleItem(title, description + "...", lessonId));
                             }
                             // Notify the adapter
                             binding.recyclerview.setAdapter(new ModuleAdapter(getApplicationContext(), moduleList, this));
@@ -101,9 +95,10 @@ public class ModuleListPage extends AppCompatActivity implements ModuleItemSelec
 
     @Override
     public void onModuleItemSelected(ModuleItem moduleItem) {
-        Intent intent = new Intent(this, ModulePage.class);
-        intent.putExtra("lessonTitle", moduleItem.getLessonTitle());
-        intent.putExtra("lessonDescription", moduleItem.getLessonDescription());
-        Utility.navigateToActivity(this, intent);
+        lessonTitle = moduleItem.getLessonTitle();
+        lessonDescription = moduleItem.getLessonDescription();
+        lessonId = moduleItem.getLessonId();
+        Utility.navigateToActivity(this, new Intent(this, ModulePage.class));
+        finish();
     }
 }

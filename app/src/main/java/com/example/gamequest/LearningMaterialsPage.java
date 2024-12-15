@@ -2,8 +2,6 @@ package com.example.gamequest;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
@@ -12,22 +10,20 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.gamequest.Teacher.TeacherHomePage;
+import com.example.gamequest.databinding.LearningMaterialsPageBinding;
 import com.example.gamequest.Utilities.Utility;
-import com.example.gamequest.databinding.ModuleListPageBinding;
-import com.example.gamequest.databinding.ModulePageBinding;
 
-public class ModulePage extends AppCompatActivity {
+public class LearningMaterialsPage extends AppCompatActivity {
 
-    ModulePageBinding binding;
-
-    String lessonTitle = ModuleListPage.lessonTitle;
-    String lessonDescription = ModuleListPage.lessonDescription;
+    LearningMaterialsPageBinding binding;
+    public static String staticGradingPeriod;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        binding = ModulePageBinding.inflate(getLayoutInflater());
+        binding = LearningMaterialsPageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -44,21 +40,27 @@ public class ModulePage extends AppCompatActivity {
         // Add the callback to the OnBackPressedDispatcher
         getOnBackPressedDispatcher().addCallback(this, callback);
 
-        // backbutton onclick
+        // backButton onclick
         binding.backButton.setOnClickListener(v -> whenBackIsPressed());
 
-        binding.lessonTitle.setText(lessonTitle);
-        binding.lessonDescription.setText(lessonDescription);
+        // grading periods onclick
+        binding.firstGrading.setOnClickListener(v -> gradingPeriodOnClick("1st Grading"));
+        binding.secondGrading.setOnClickListener(v -> gradingPeriodOnClick("2nd Grading"));
+        binding.thirdGrading.setOnClickListener(v -> gradingPeriodOnClick("3rd Grading"));
+        binding.fourthGrading.setOnClickListener(v -> gradingPeriodOnClick("4th Grading"));
 
-        // proceedToQuiz onclick
-        binding.proceedToQuizBttn.setOnClickListener(v -> {
-            Utility.navigateToActivity(ModulePage.this, new Intent(ModulePage.this, QuizPage.class));
-            finish();
-        });
+    }
+
+    private void gradingPeriodOnClick(String gradingPeriod) {
+        staticGradingPeriod = gradingPeriod;
+        Utility.navigateToActivity(LearningMaterialsPage.this,
+                new Intent(LearningMaterialsPage.this, ModuleListPage.class));
+        finish();
+
     }
 
     private void whenBackIsPressed() {
-        Utility.navigateToActivity(this, new Intent(this, ModuleListPage.class));
+        Utility.navigateToActivity(this, new Intent(this, TeacherHomePage.class));
         finish();
     }
 }

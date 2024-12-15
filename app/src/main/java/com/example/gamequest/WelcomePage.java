@@ -10,6 +10,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.gamequest.Student.StudentHomePage;
 import com.example.gamequest.databinding.WelcomePageBinding;
 import com.example.gamequest.Utilities.Utility;
 import com.example.gamequest.Teacher.TeacherHomePage;
@@ -54,7 +55,7 @@ public class WelcomePage extends AppCompatActivity {
             Utility.navigateToActivity(this, new Intent(this, TeacherHomePage.class));
         }
         else {
-            Toast.makeText(this, "Student Home Page", Toast.LENGTH_SHORT).show();
+            Utility.navigateToActivity(this, new Intent(this, StudentHomePage.class));
         }
         finish();
     }

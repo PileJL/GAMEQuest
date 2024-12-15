@@ -179,6 +179,8 @@ public class CreateQuizPage extends AppCompatActivity {
                     binding.option3, binding.option4)));
             // set form label to new question number
             binding.questionLabel.setText(questionNumberLabel);
+            // rest radio buttons
+            Utility.resetRadioButtons(radioButtons);
         }
     }
 }

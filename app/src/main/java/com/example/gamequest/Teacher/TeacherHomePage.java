@@ -2,7 +2,6 @@ package com.example.gamequest.Teacher;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +9,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.gamequest.LearningMaterialsPage;
 import com.example.gamequest.R;
 import com.example.gamequest.databinding.TeacherHomePageBinding;
 import com.example.gamequest.Utilities.Utility;
@@ -41,6 +41,13 @@ public class TeacherHomePage extends AppCompatActivity {
 
         // learningMaterialsBttn onclick
         binding.learningMaterialsBttn.setOnClickListener(v -> {
+            Utility.navigateToActivity(TeacherHomePage.this, new Intent(TeacherHomePage.this, LearningMaterialsPage.class));
+            finish();
+        });
+
+        // studAssLogBttn onclick
+        binding.studAssLogBttn.setOnClickListener(v -> {
+            Intent intent = new Intent(this, LearningMaterialsPage.class);
             Utility.navigateToActivity(TeacherHomePage.this, new Intent(TeacherHomePage.this, LearningMaterialsPage.class));
             finish();
         });

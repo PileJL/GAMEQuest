@@ -2,10 +2,18 @@ package com.example.gamequest.Utilities;
 
 import android.animation.ObjectAnimator;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.example.gamequest.R;
 import com.google.android.material.textfield.TextInputEditText;
@@ -71,4 +79,42 @@ public class Utility {
             radioButton.setChecked(true);
         }
     }
+    public static void resetRadioButtons(ArrayList<RadioButton> radioButtons) {
+        for (RadioButton radioButton: radioButtons) {
+            radioButton.setChecked(false);
+        }
+    }
+    // Static method to add a row to the TableLayout
+    public static void addTableRow(Context context, TableLayout tableLayout, String name, String score) {
+        // Create a new TableRow
+        TableRow tableRow = new TableRow(context);
+
+        // Create and configure the first TextView (Name)
+        TextView nameTextView = new TextView(context);
+        nameTextView.setText(name); // Set the text
+        nameTextView.setGravity(android.view.Gravity.CENTER); // Center text
+        nameTextView.setTextColor(ContextCompat.getColor(context, R.color.black)); // Set text color
+        nameTextView.setTextSize(15); // Set text size
+        nameTextView.setPadding(20, 10, 0, 10); // Set padding
+        Typeface nameFont = ResourcesCompat.getFont(context, R.font.fredoka_regular);
+        nameTextView.setTypeface(nameFont); // Set font
+
+        // Create and configure the second TextView (Score)
+        TextView scoreTextView = new TextView(context);
+        scoreTextView.setText(score); // Set the text
+        scoreTextView.setGravity(android.view.Gravity.CENTER); // Center text
+        scoreTextView.setTextColor(ContextCompat.getColor(context, R.color.black)); // Set text color
+        scoreTextView.setTextSize(15); // Set text size
+        scoreTextView.setPadding(0, 10, 0, 10); // Set padding
+        Typeface scoreFont = ResourcesCompat.getFont(context, R.font.fredoka_regular);
+        scoreTextView.setTypeface(scoreFont); // Set font
+
+        // Add the TextViews to the TableRow
+        tableRow.addView(nameTextView);
+        tableRow.addView(scoreTextView);
+
+        // Add the TableRow to the TableLayout
+        tableLayout.addView(tableRow);
+    }
+
 }
