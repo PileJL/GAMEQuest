@@ -27,6 +27,7 @@ public class SignInPage extends AppCompatActivity {
     SignInPageBinding binding;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     public static String userID;
+    public static String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,7 @@ public class SignInPage extends AppCompatActivity {
                             if (task.getResult() != null && !task.getResult().isEmpty()) {
                                 for (DocumentSnapshot document : task.getResult()) {
                                     userID = document.getId();
+                                    userName = document.getString("userName");
                                     Intent intent = new Intent(SignInPage.this, WelcomePage.class);
                                     intent.putExtra("userType", userType);
                                     Utility.navigateToActivity(SignInPage.this, intent);

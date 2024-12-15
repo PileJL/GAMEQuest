@@ -2,8 +2,6 @@ package com.example.gamequest;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
@@ -13,28 +11,26 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.gamequest.Utilities.Utility;
-import com.example.gamequest.databinding.ModuleListPageBinding;
-import com.example.gamequest.databinding.ModulePageBinding;
+import com.example.gamequest.databinding.ProfilePageBinding;
 
-public class ModulePage extends AppCompatActivity {
+public class ProfilePage extends AppCompatActivity {
 
-    ModulePageBinding binding;
-
-    String lessonTitle = ModuleListPage.lessonTitle;
-    String lessonDescription = ModuleListPage.lessonDescription;
+    ProfilePageBinding binding;
+    String userName = SignInPage.userName;
+    Class<?> backPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        binding = ModulePageBinding.inflate(getLayoutInflater());
+        binding = ProfilePageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        // This callback will intercept the back button press
+    // This callback will intercept the back button press
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
@@ -47,27 +43,22 @@ public class ModulePage extends AppCompatActivity {
         // backbutton onclick
         binding.backButton.setOnClickListener(v -> whenBackIsPressed());
 
-        binding.lessonTitle.setText(lessonTitle);
-        binding.lessonDescription.setText(lessonDescription);
+        // retrieve the destination Activity
+        Intent intent = getIntent();
+        try {
+            backPage = Class.forName(intent.getStringExtra("backPage"));
+        }
+        catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
-        // proceedToQuiz onclick
-        binding.proceedToQuizBttn.setOnClickListener(v -> {
-            Utility.navigateToActivity(ModulePage.this, new Intent(ModulePage.this, QuizPage.class));
-            finish();
-        });
+        // set profile usrename
+        binding.userName.setText(userName);
 
-        binding.profileButton.setOnClickListener(v -> goToProfilePage());
-    }
-
-    private void goToProfilePage() {
-        Intent intent = new Intent(this, ProfilePage.class);
-        intent.putExtra("backPage", ModulePage.class.getName());
-        Utility.navigateToActivity(this, intent);
-        finish();
     }
 
     private void whenBackIsPressed() {
-        Utility.navigateToActivity(this, new Intent(this, ModuleListPage.class));
+        Utility.navigateToActivity(this, new Intent(ProfilePage.this, backPage));
         finish();
     }
 }

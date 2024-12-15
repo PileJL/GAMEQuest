@@ -103,12 +103,7 @@ public class SignUpPage extends AppCompatActivity {
                                             Utility.emptyFields(new ArrayList<>(Arrays.asList(binding.userName, binding.password)));
                                             Toast.makeText(SignUpPage.this, "Account created successfully.", Toast.LENGTH_SHORT).show();
                                         })
-                                        .addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                Toast.makeText(SignUpPage.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
+                                        .addOnFailureListener(e -> Toast.makeText(SignUpPage.this, e.getMessage(), Toast.LENGTH_SHORT).show());
                             }
                         }
                         else {

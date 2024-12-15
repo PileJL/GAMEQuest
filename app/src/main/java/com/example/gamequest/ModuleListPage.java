@@ -13,9 +13,13 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.gamequest.Teacher.CreateLessonPage;
 import com.example.gamequest.Teacher.Module.ModuleAdapter;
 import com.example.gamequest.Teacher.Module.ModuleItem;
 import com.example.gamequest.Teacher.Module.ModuleItemSelectListener;
+import com.example.gamequest.Teacher.StudentAssessmentLogPage;
+import com.example.gamequest.Teacher.TeacherHomePage;
+import com.example.gamequest.databinding.CreateLessonPageBinding;
 import com.example.gamequest.databinding.ModuleListPageBinding;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -62,6 +66,9 @@ public class ModuleListPage extends AppCompatActivity implements ModuleItemSelec
         // set page title based on grading period
         binding.pageTitle.setText(gradingPeriod + " Period");
 
+        // profile button onclick
+        binding.profileButton.setOnClickListener(v -> goToProfilePage());
+
         // get lessons
         db.collection("lessons")
                 .whereEqualTo("gradingPeriod", gradingPeriod) // Filter by gradingPeriod
@@ -88,6 +95,13 @@ public class ModuleListPage extends AppCompatActivity implements ModuleItemSelec
                 });
     }
 
+    private void goToProfilePage() {
+        Intent intent = new Intent(this, ProfilePage.class);
+        intent.putExtra("backPage", ModuleListPage.class.getName());
+        Utility.navigateToActivity(this, intent);
+        finish();
+    }
+
     private void whenBackIsPressed() {
         Utility.navigateToActivity(this, new Intent(this, LearningMaterialsPage.class));
         finish();
@@ -95,10 +109,17 @@ public class ModuleListPage extends AppCompatActivity implements ModuleItemSelec
 
     @Override
     public void onModuleItemSelected(ModuleItem moduleItem) {
+        // set lesson details
+        lessonId = moduleItem.getLessonId();
         lessonTitle = moduleItem.getLessonTitle();
         lessonDescription = moduleItem.getLessonDescription();
-        lessonId = moduleItem.getLessonId();
-        Utility.navigateToActivity(this, new Intent(this, ModulePage.class));
+        // navigate to page accordingly
+        if (TeacherHomePage.openStudentAssLog) {
+            Utility.navigateToActivity(this, new Intent(this, StudentAssessmentLogPage.class));
+        }
+        else {
+            Utility.navigateToActivity(this, new Intent(this, ModulePage.class));
+        }
         finish();
     }
 }

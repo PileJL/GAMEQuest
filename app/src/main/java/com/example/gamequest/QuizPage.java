@@ -47,6 +47,8 @@ public class QuizPage extends AppCompatActivity {
     public static int userScore = 0;
     public static int quizTotalItem;
 
+    Map<String, Object> assessmentLog = new HashMap<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,7 +134,6 @@ public class QuizPage extends AppCompatActivity {
             Utility.resetRadioButtons(radioButtons);
             // set next question
             setQuestion();
-
         }
     }
 
@@ -171,8 +172,8 @@ public class QuizPage extends AppCompatActivity {
     private void setQuestion() {
         // check if all questions are answered
         if (answeredQuestions == quizTotalItem) {
-            Utility.navigateToActivity(this, new Intent(this, QuizScorePage.class));
-            finish();
+            // add user score to database
+            addUserScoreToDB();
             return;
         }
         // set question label
@@ -187,6 +188,23 @@ public class QuizPage extends AppCompatActivity {
         binding.option4.setText(choices.get(3));
 
         Toast.makeText(this, quizQuestions.get(answeredQuestions).get("answer").toString(), Toast.LENGTH_SHORT).show();
+    }
+
+    private void addUserScoreToDB() {
+        // add user score to assessmentLog
+        assessmentLog.put("lessonId", lessonId);
+        assessmentLog.put("userName", SignInPage.userName);
+        assessmentLog.put("userScore", String.format("%d / %d", userScore, quizTotalItem));
+
+        // else, add the account to database
+        db.collection("assessmentLog")
+                .add(assessmentLog)
+                .addOnSuccessListener(documentReference -> {
+                    // go to quiz score page
+                    Utility.navigateToActivity(this, new Intent(this, QuizScorePage.class));
+                    finish();
+                })
+                .addOnFailureListener(e -> Toast.makeText(QuizPage.this, e.getMessage(), Toast.LENGTH_SHORT).show());
     }
 
     private void whenBackIsPressed() {

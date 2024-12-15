@@ -14,7 +14,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.gamequest.ProfilePage;
 import com.example.gamequest.R;
+import com.example.gamequest.databinding.CreateLessonPageBinding;
 import com.example.gamequest.databinding.CreateQuizPageBinding;
 
 import java.util.ArrayList;
@@ -99,6 +101,16 @@ public class CreateQuizPage extends AppCompatActivity {
 
         // create button onclick
         binding.createQuizButton.setOnClickListener(v -> createQuiz());
+
+        // profile button onclick
+        binding.profileButton.setOnClickListener(v -> goToProfilePage());
+    }
+
+    private void goToProfilePage() {
+        Intent intent = new Intent(this, ProfilePage.class);
+        intent.putExtra("backPage", CreateQuizPage.class.getName());
+        Utility.navigateToActivity(this, intent);
+        finish();
     }
 
     private void whenBackIsPressed() {

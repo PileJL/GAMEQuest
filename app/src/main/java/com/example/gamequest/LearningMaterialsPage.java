@@ -57,6 +57,16 @@ public class LearningMaterialsPage extends AppCompatActivity {
         binding.thirdGrading.setOnClickListener(v -> gradingPeriodOnClick("3rd Grading"));
         binding.fourthGrading.setOnClickListener(v -> gradingPeriodOnClick("4th Grading"));
 
+        // profileButton onclick
+        binding.profileButton.setOnClickListener(v -> goToProfilePage());
+
+    }
+
+    private void goToProfilePage() {
+        Intent intent = new Intent(this, ProfilePage.class);
+        intent.putExtra("backPage", LearningMaterialsPage.class.getName());
+        Utility.navigateToActivity(this, intent);
+        finish();
     }
 
     private void gradingPeriodOnClick(String gradingPeriod) {

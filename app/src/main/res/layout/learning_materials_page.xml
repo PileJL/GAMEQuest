@@ -31,6 +31,17 @@
         android:textSize="35sp"
         android:layout_marginTop="20dp"/>
 
+    <ImageView
+        android:id="@+id/profileButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/profile_icon"
+        app:layout_constraintTop_toTopOf="@id/pageTitle"
+        app:layout_constraintBottom_toBottomOf="@id/pageTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="20dp"/>
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
