@@ -75,26 +75,8 @@ public class StudentAssessmentLogPage extends AppCompatActivity {
                     }
                 });
 
-
-//        Utility.addTableRow(this, binding.tableLayout, "John Doe", "15");
-//        Utility.addTableRow(this, binding.tableLayout, "John Doe", "15");
-//        Utility.addTableRow(this, binding.tableLayout, "John Doe", "15");
-//        Utility.addTableRow(this, binding.tableLayout, "John Doe", "15");
-//        Utility.addTableRow(this, binding.tableLayout, "John Doe", "15");
-//        Utility.addTableRow(this, binding.tableLayout, "John Doe", "15");
-//        Utility.addTableRow(this, binding.tableLayout, "John Doe", "15");
-//        Utility.addTableRow(this, binding.tableLayout, "John Doe", "15");
-//        Utility.addTableRow(this, binding.tableLayout, "John Doe", "15");
-//        Utility.addTableRow(this, binding.tableLayout, "John Doe", "15");
-//        Utility.addTableRow(this, binding.tableLayout, "John Doe", "15");
-//        Utility.addTableRow(this, binding.tableLayout, "John Doe", "15");
-//        Utility.addTableRow(this, binding.tableLayout, "John Doe", "15");
-//        Utility.addTableRow(this, binding.tableLayout, "John Doe", "15");
-//        Utility.addTableRow(this, binding.tableLayout, "John Doe", "15");
-//        Utility.addTableRow(this, binding.tableLayout, "John Doe", "15");
-//        Utility.addTableRow(this, binding.tableLayout, "John Doe", "15");
-//        Utility.addTableRow(this, binding.tableLayout, "John Doe", "15");
-
+        // set lesson title
+        binding.lessonTitle.setText(ModuleListPage.lessonTitle);
     }
 
     private void whenBackIsPressed() {

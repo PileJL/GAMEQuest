@@ -99,7 +99,6 @@ public class ModuleListPage extends AppCompatActivity implements ModuleItemSelec
         Intent intent = new Intent(this, ProfilePage.class);
         intent.putExtra("backPage", ModuleListPage.class.getName());
         Utility.navigateToActivity(this, intent);
-        finish();
     }
 
     private void whenBackIsPressed() {

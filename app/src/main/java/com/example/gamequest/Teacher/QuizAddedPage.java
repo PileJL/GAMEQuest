@@ -43,7 +43,9 @@ public class QuizAddedPage extends AppCompatActivity {
 
     }
     private void whenBackIsPressed() {
-        Utility.navigateToActivity(this, new Intent(this, TeacherHomePage.class));
+        Intent intent = new Intent(this, TeacherHomePage.class); // Specify the activity to navigate to
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
         finish();
     }
 }

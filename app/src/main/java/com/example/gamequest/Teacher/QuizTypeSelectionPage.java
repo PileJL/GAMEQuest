@@ -31,15 +31,6 @@ public class QuizTypeSelectionPage extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        // This callback will intercept the back button press
-        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
-            @Override
-            public void handleOnBackPressed() {
-                whenBackIsPressed();
-            }
-        };
-        // Add the callback to the OnBackPressedDispatcher
-        getOnBackPressedDispatcher().addCallback(this, callback);
 
         binding.backButton.setOnClickListener(v -> whenBackIsPressed());
 
@@ -48,13 +39,6 @@ public class QuizTypeSelectionPage extends AppCompatActivity {
         lessonDescription = intent.getStringExtra("lessonDescription");
         gradingPeriod = intent.getStringExtra("gradingPeriod");
 
-
-        // back button onclick
-        binding.backButton.setOnClickListener(v -> {
-            Utility.navigateToActivity(this, new Intent(this, CreateLessonPage.class));
-            finish();
-        });
-
         // pickAndPlay button onclick
         binding.pickAndPlayBttn.setOnClickListener(v -> {
             Intent intent1 = new Intent(QuizTypeSelectionPage.this, CreateQuizPage.class);
@@ -62,12 +46,10 @@ public class QuizTypeSelectionPage extends AppCompatActivity {
             intent1.putExtra("lessonDescription", lessonDescription);
             intent1.putExtra("gradingPeriod", gradingPeriod);
             Utility.navigateToActivity(QuizTypeSelectionPage.this, intent1);
-            finish();
         });
     }
 
     private void whenBackIsPressed() {
-        Utility.navigateToActivity(this, new Intent(this, CreateLessonPage.class));
         finish();
     }
 }

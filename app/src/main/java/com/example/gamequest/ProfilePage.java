@@ -66,7 +66,6 @@ public class ProfilePage extends AppCompatActivity {
     }
 
     private void whenBackIsPressed() {
-        Utility.navigateToActivity(this, new Intent(ProfilePage.this, backPage));
         finish();
     }
 }

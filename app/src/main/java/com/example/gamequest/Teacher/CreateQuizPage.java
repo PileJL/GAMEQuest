@@ -110,11 +110,9 @@ public class CreateQuizPage extends AppCompatActivity {
         Intent intent = new Intent(this, ProfilePage.class);
         intent.putExtra("backPage", CreateQuizPage.class.getName());
         Utility.navigateToActivity(this, intent);
-        finish();
     }
 
     private void whenBackIsPressed() {
-        Utility.navigateToActivity(this, new Intent(this, CreateLessonPage.class));
         finish();
     }
 

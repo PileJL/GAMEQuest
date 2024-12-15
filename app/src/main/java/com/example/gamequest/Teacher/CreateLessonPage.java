@@ -70,7 +70,6 @@ public class CreateLessonPage extends AppCompatActivity {
         Intent intent = new Intent(this, ProfilePage.class);
         intent.putExtra("backPage", CreateLessonPageBinding.class.getName());
         Utility.navigateToActivity(this, intent);
-        finish();
     }
 
     private void proceedToQuiz() {
@@ -84,7 +83,6 @@ public class CreateLessonPage extends AppCompatActivity {
             intent.putExtra("lessonDescription", binding.lessonDescription.getText().toString().trim());
             intent.putExtra("gradingPeriod", binding.gradingPeriod.getText().toString().trim());
             Utility.navigateToActivity(CreateLessonPage.this, intent);
-            finish();
         }
     }
 

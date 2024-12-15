@@ -66,7 +66,6 @@ public class LearningMaterialsPage extends AppCompatActivity {
         Intent intent = new Intent(this, ProfilePage.class);
         intent.putExtra("backPage", LearningMaterialsPage.class.getName());
         Utility.navigateToActivity(this, intent);
-        finish();
     }
 
     private void gradingPeriodOnClick(String gradingPeriod) {

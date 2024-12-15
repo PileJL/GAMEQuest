@@ -121,6 +121,7 @@
                     android:textAllCaps="false"
                     android:background="@drawable/transparent_oval"
                     android:fontFamily="@font/boogaloo_regular"
+                    android:visibility="gone"
                     />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

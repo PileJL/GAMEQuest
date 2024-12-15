@@ -15,6 +15,10 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.gamequest.Utilities.Utility;
 import com.example.gamequest.databinding.ModuleListPageBinding;
 import com.example.gamequest.databinding.ModulePageBinding;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ModulePage extends AppCompatActivity {
 
@@ -22,6 +26,7 @@ public class ModulePage extends AppCompatActivity {
 
     String lessonTitle = ModuleListPage.lessonTitle;
     String lessonDescription = ModuleListPage.lessonDescription;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +49,8 @@ public class ModulePage extends AppCompatActivity {
         // Add the callback to the OnBackPressedDispatcher
         getOnBackPressedDispatcher().addCallback(this, callback);
 
+        checkIfAlreadyTakenQuiz();
+
         // backbutton onclick
         binding.backButton.setOnClickListener(v -> whenBackIsPressed());
 
@@ -63,11 +70,32 @@ public class ModulePage extends AppCompatActivity {
         Intent intent = new Intent(this, ProfilePage.class);
         intent.putExtra("backPage", ModulePage.class.getName());
         Utility.navigateToActivity(this, intent);
-        finish();
     }
 
     private void whenBackIsPressed() {
         Utility.navigateToActivity(this, new Intent(this, ModuleListPage.class));
         finish();
+    }
+    private void checkIfAlreadyTakenQuiz() {
+        // check if username exists
+        db.collection("assessmentLog")
+                .whereEqualTo("lessonId", ModuleListPage.lessonId)
+                .whereEqualTo("userName", SignInPage.userName)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        // hide proceedToQuiz button if already taken quiz
+                        if (task.getResult() != null && !task.getResult().isEmpty()) {
+                            binding.proceedToQuizBttn.setVisibility(View.GONE);
+                        }
+                        else {
+                            binding.proceedToQuizBttn.setVisibility(View.VISIBLE);
+                        }
+                    }
+                    else {
+                        // Handle query errors
+                        Toast.makeText(ModulePage.this, "Error checking account", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }
