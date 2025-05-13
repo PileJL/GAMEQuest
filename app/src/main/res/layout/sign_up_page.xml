@@ -89,6 +89,31 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <TextView
+            android:id="@+id/signinText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign in"
+            app:layout_constraintTop_toBottomOf="@id/passwordLayout"
+            app:layout_constraintEnd_toEndOf="@id/passwordLayout"
+            android:textColor="@color/white"
+            android:fontFamily="@font/inter_bold"
+            android:textSize="11sp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="5dp"
+            android:textStyle="italic"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Already have an account?"
+            app:layout_constraintTop_toTopOf="@id/signinText"
+            app:layout_constraintEnd_toStartOf="@id/signinText"
+            app:layout_constraintBottom_toBottomOf="@id/signinText"
+            android:textColor="@color/white"
+            android:textSize="11sp"
+            android:layout_marginEnd="2dp"/>
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/signUpButton"
             android:layout_width="match_parent"

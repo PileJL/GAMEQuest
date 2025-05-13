@@ -38,7 +38,7 @@ public class UserSelection extends AppCompatActivity {
     }
 
     private void goToLoginPage(String userType) {
-        Intent intent = new Intent(this, LoginPage.class);
+        Intent intent = new Intent(this, SignInPage.class);
         intent.putExtra("userType", userType);
         Utility.navigateToActivity(this, intent);
         finish();

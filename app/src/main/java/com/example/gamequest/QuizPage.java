@@ -1,9 +1,11 @@
 package com.example.gamequest;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
@@ -29,6 +31,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,6 +51,10 @@ public class QuizPage extends AppCompatActivity {
     public static int quizTotalItem;
 
     Map<String, Object> assessmentLog = new HashMap<>();
+
+    int lives;
+    ArrayList<ImageView> hearts;
+    MediaPlayer BGMMediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +76,14 @@ public class QuizPage extends AppCompatActivity {
         };
         // Add the callback to the OnBackPressedDispatcher
         getOnBackPressedDispatcher().addCallback(this, callback);
-        // initializations
+        // declarations
+        hearts = new ArrayList<>(Arrays.asList(binding.heart1, binding.heart2, binding.heart3));
+        BGMMediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.quiz_bg_music);
         radioButtons = new ArrayList<>(Arrays.asList(binding.radioButton1, binding.radioButton2, binding.radioButton3, binding.radioButton4));
+        lives = 3;
+
+        // play BGMusic
+        Utility.playBGMusic(BGMMediaPlayer);
 
         // back button onclick
         binding.backButton.setOnClickListener(v -> whenBackIsPressed());
@@ -123,10 +136,10 @@ public class QuizPage extends AppCompatActivity {
             // check if answer is correct
             if (questionAnswer.equalsIgnoreCase(quizQuestions.get(answeredQuestions).get("answer").toString())) {
                 userScore++;
-//                Toast.makeText(this, "tama", Toast.LENGTH_SHORT).show();
             }
             else {
-//                Toast.makeText(this, "mali", Toast.LENGTH_SHORT).show();
+                wrongAnswer();
+
             }
 
             // empty questionAnswer
@@ -138,6 +151,18 @@ public class QuizPage extends AppCompatActivity {
             // set next question
             setQuestion();
         }
+    }
+
+    private void wrongAnswer() {
+        lives--;
+        // go to gameover activity if lives == 0
+        if (lives == 0) {
+            Utility.cutAudio(new ArrayList<>(Collections.singletonList(BGMMediaPlayer)));
+            Utility.navigateToActivity(this, new Intent(this, GameOverActivity.class));
+            finish();
+        }
+        // decrease lives
+        Utility.animateHeart(getApplicationContext(), hearts, lives);
     }
 
     private void getQuizQuestions(String quizId) {

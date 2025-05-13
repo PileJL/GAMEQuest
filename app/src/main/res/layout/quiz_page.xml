@@ -43,7 +43,7 @@
         android:visibility="gone"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/buttonsContainer"
+        android:id="@+id/quizContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxHeight="630dp"
@@ -54,11 +54,43 @@
         android:paddingHorizontal="10dp"
         android:background="@drawable/gradient_blue_soft_top_corcers">
 
+        <LinearLayout
+            android:id="@+id/livesContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/lives_bg"
+            android:paddingVertical="5dp"
+            android:paddingHorizontal="10dp"
+            android:layout_marginStart="10dp"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/quizDeetsContainer"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="3dp"
+            >
+
+            <ImageView
+                android:id="@+id/heart1"
+                android:layout_marginEnd="2dp"
+                style="@style/quiz_heart_style" />
+
+            <ImageView
+                android:id="@+id/heart2"
+                android:layout_marginEnd="2dp"
+                style="@style/quiz_heart_style" />
+
+            <ImageView
+                android:id="@+id/heart3"
+                style="@style/quiz_heart_style" />
+
+        </LinearLayout>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/quizDeetsContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/livesContainer"
             android:layout_marginTop="10dp"
             android:background="@drawable/white_button"
             android:paddingHorizontal="20dp">

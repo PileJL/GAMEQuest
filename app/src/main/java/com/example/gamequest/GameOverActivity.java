@@ -11,17 +11,17 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.gamequest.Utilities.Utility;
-import com.example.gamequest.databinding.LoginPageBinding;
+import com.example.gamequest.databinding.ActivityGameOverBinding;
 
-public class LoginPage extends AppCompatActivity {
+public class GameOverActivity extends AppCompatActivity {
 
-    LoginPageBinding binding;
+    ActivityGameOverBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        binding = LoginPageBinding.inflate(getLayoutInflater());
+        binding = ActivityGameOverBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -38,30 +38,12 @@ public class LoginPage extends AppCompatActivity {
         // Add the callback to the OnBackPressedDispatcher
         getOnBackPressedDispatcher().addCallback(this, callback);
 
-        // get selected userType from previous page
-        Intent intent = getIntent();
-        String userType = intent.getStringExtra("userType");
-
-        // createAccountButton onclick
-        binding.createAccountButton.setOnClickListener(v -> {
-            Intent intent1 = new Intent(LoginPage.this, SignUpPage.class);
-            intent1.putExtra("userType", userType);
-            Utility.navigateToActivity(LoginPage.this, intent1);
-            finish();
-        });
-
-        // loginButton onclick
-        binding.loginButton.setOnClickListener(v -> {
-            Intent intent1 = new Intent(LoginPage.this, SignInPage.class);
-            intent1.putExtra("userType", userType);
-            Utility.navigateToActivity(LoginPage.this, intent1);
-            finish();
-        });
+        binding.backButton.setOnClickListener(v -> whenBackIsPressed());
 
     }
 
     private void whenBackIsPressed() {
-        Utility.navigateToActivity(this, new Intent(this, UserSelection.class));
+        Utility.navigateToActivity(this, new Intent(this, ModulePage.class));
         finish();
     }
 }

@@ -78,11 +78,11 @@ public class CreateLessonPage extends AppCompatActivity {
             Toast.makeText(this, "Please provide all necessary details.", Toast.LENGTH_SHORT).show();
         }
         else {
-            Intent intent = new Intent(CreateLessonPage.this, QuizTypeSelectionPage.class);
+            Intent intent = new Intent(this, CreateQuizPage.class);
             intent.putExtra("lessonTitle", binding.lessonTitle.getText().toString().trim());
             intent.putExtra("lessonDescription", binding.lessonDescription.getText().toString().trim());
             intent.putExtra("gradingPeriod", binding.gradingPeriod.getText().toString().trim());
-            Utility.navigateToActivity(CreateLessonPage.this, intent);
+            Utility.navigateToActivity(this, intent);
         }
     }
 

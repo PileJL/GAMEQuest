@@ -4,9 +4,15 @@ import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
+import android.media.PlaybackParams;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -117,4 +123,42 @@ public class Utility {
         tableLayout.addView(tableRow);
     }
 
+    public static void playBGMusic(MediaPlayer mediaPlayer) {
+        mediaPlayer.setLooping(true);
+        Utility.playAudio(mediaPlayer, 1f);
+    }
+
+    public static int playAudio(MediaPlayer mediaPlayer,  float playbackSpeed) {
+        if (mediaPlayer != null) {
+            mediaPlayer.setPlaybackParams(new PlaybackParams().setSpeed(playbackSpeed));
+            mediaPlayer.start();
+            return mediaPlayer.getDuration();
+        }
+        return 0;
+    }
+
+    public static void cutAudio(ArrayList<MediaPlayer> mediaPlayers) {
+        for (MediaPlayer mediaPlayer: mediaPlayers) {
+            if (mediaPlayer != null || mediaPlayer.isPlaying()) {
+                mediaPlayer.stop();
+            }
+        }
+    }
+
+    public static void animateHeart(Context context, ArrayList<ImageView> hearts, int lives) {
+        Animation fadeOutShrink = AnimationUtils.loadAnimation(context, R.anim.fade_out_shrink);
+        hearts.get(lives).startAnimation(fadeOutShrink);
+        fadeOutShrink.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {            }
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                // Change the image resource to an empty heart
+                hearts.get(lives).setImageResource(R.drawable.heart_no_fill);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {}
+        });
+    }
 }

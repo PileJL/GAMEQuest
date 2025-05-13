@@ -67,6 +67,14 @@ public class SignUpPage extends AppCompatActivity {
         binding.signUpButton.setOnClickListener(v -> createAccount(userType, binding.userName.getText().toString().trim(),
                 binding.password.getText().toString().trim()));
 
+        // signup text onclick
+        binding.signinText.setOnClickListener(view -> {
+            Intent intent1 = new Intent(SignUpPage.this, SignInPage.class);
+            intent1.putExtra("userType", userType);
+            Utility.navigateToActivity(SignUpPage.this, intent1);
+            finish();
+        });
+
     }
 
     private void createAccount(String userType, String userName, String password) {

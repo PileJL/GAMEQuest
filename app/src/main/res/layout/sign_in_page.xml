@@ -98,19 +98,44 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:id="@+id/signupText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sign up"
+                app:layout_constraintTop_toBottomOf="@id/passwordLayout"
+                app:layout_constraintEnd_toEndOf="@id/passwordLayout"
+                android:textColor="@color/white"
+                android:fontFamily="@font/inter_bold"
+                android:textSize="11sp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginTop="5dp"
+                android:textStyle="italic"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Don't have an account?"
+                app:layout_constraintTop_toTopOf="@id/signupText"
+                app:layout_constraintEnd_toStartOf="@id/signupText"
+                app:layout_constraintBottom_toBottomOf="@id/signupText"
+                android:textColor="@color/white"
+                android:textSize="11sp"
+                android:layout_marginEnd="2dp"/>
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/signInButton"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:background="@drawable/violet_button_bg"
-                app:layout_constraintTop_toBottomOf="@id/passwordLayout"
+                app:layout_constraintTop_toBottomOf="@id/signupText"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginBottom="70dp"
                 android:text="Log in"
                 android:textAllCaps="false"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:textColor="@color/white"
                 android:fontFamily="@font/inter_24pt_bold"
                 android:textSize="21sp"

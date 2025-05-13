@@ -56,6 +56,13 @@ public class SignInPage extends AppCompatActivity {
         userType = intent.getStringExtra("userType");
 
         binding.signInButton.setOnClickListener(v -> logIn(userType, binding.userName.getText().toString(), binding.password.getText().toString()));
+        // signup text onclick
+        binding.signupText.setOnClickListener(view -> {
+            Intent intent1 = new Intent(SignInPage.this, SignUpPage.class);
+            intent1.putExtra("userType", userType);
+            Utility.navigateToActivity(SignInPage.this, intent1);
+            finish();
+        });
 
     }
 
